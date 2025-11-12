@@ -11,6 +11,8 @@ async function createWindow() {
     height: 700,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
+      contextIsolation: true,
+      nodeIntegration: false,
     },
   });
 
@@ -18,7 +20,7 @@ async function createWindow() {
     if (process.env.VITE_DEV_SERVER_URL) {
       await win.loadURL(process.env.VITE_DEV_SERVER_URL);
     } else {
-      await win.loadFile(path.join(__dirname, '../dist/index.html'));
+      await win.loadFile(path.join(__dirname, '../renderer/index.html'));
     }
   } catch (err) {
     console.error('Error loading screen:', err);
