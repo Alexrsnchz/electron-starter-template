@@ -2,12 +2,12 @@
   "name": "electron-starter-template",
   "description": "",
   "version": "1.0.0",
-  "main": "./out/main/index.js",
+  "main": "./dist/main/index.js",
   "type": "module",
   "author": "",
   "license": "",
   "scripts": {
-    "dev": "electron-vite dev",
+    "dev": "electron-vite dev --inspect --watch",
     "build": "electron-vite build",
     "preview": "electron-vite preview"
   },
