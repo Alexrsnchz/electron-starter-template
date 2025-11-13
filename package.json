@@ -2,7 +2,7 @@
   "name": "electron-starter-template",
   "description": "",
   "version": "1.0.0",
-  "main": "./src/main/index.ts",
+  "main": "./out/main/index.js",
   "type": "module",
   "author": "",
   "license": "",

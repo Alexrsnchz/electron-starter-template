@@ -5,22 +5,22 @@ import { app, BrowserWindow } from 'electron';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-async function createWindow() {
+function createWindow() {
   const win = new BrowserWindow({
     width: 1024,
     height: 675,
     webPreferences: {
-      preload: path.join(__dirname, 'preload.js'),
+      preload: path.join(__dirname, '../preload/index.js'),
       contextIsolation: true,
       nodeIntegration: false,
     },
   });
 
   try {
-    if (process.env.VITE_DEV_SERVER_URL) {
-      await win.loadURL(process.env.VITE_DEV_SERVER_URL);
+    if (!app.isPacked && process.env.VITE_DEV_SERVER_URL) {
+      win.loadURL(process.env.VITE_DEV_SERVER_URL);
     } else {
-      await win.loadFile(path.join(__dirname, '../renderer/index.html'));
+      win.loadFile(path.join(__dirname, '../renderer/index.html'));
     }
   } catch (err) {
     console.error('Error loading screen:', err);
@@ -28,11 +28,11 @@ async function createWindow() {
 }
 
 app.whenReady().then(() => {
-  createWindow().catch((err) => console.error(err));
+  createWindow()
 
   app.on('activate', () => {
     if (BrowserWindow.getAllWindows().length === 0) {
-      createWindow().catch((err) => console.error(err));
+      createWindow()
     }
   });
 });
